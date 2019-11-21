@@ -15,7 +15,8 @@ source .env/bin/activate
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pre-commit install
 ```
 
 To activate your virtual env
