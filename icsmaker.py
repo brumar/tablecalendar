@@ -9,6 +9,8 @@ class Ics:
     def from_csv(filepath):
         with open(filepath, "r") as f:
             reader = csv.reader(f)
+            first_row = next(reader)
+            agents = tuple(first_row[2:])
             for row in reader:
-                agents = tuple(row[2:])
-                return Ics(agents)
+                pass
+            return Ics(agents)
