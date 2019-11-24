@@ -14,3 +14,7 @@ class Ics:
             for row in reader:
                 pass
             return Ics(agents)
+
+    def __getitem__(self, item):
+        if item in self.agents:
+            return {}
