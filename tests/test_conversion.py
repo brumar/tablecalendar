@@ -14,3 +14,8 @@ def test_ut_get_list_agents():
     cal_ics = Ics.from_csv("./tests/fixture_1.csv")
 
     assert cal_ics.agents == ("MARIE", "JOE", "CLEMENT")
+
+
+def test_ut_get_agent():
+    cal_ics = Ics.from_csv("./tests/fixture_1.csv")
+    assert cal_ics["MARIE"] is not None
