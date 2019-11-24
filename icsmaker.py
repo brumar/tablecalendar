@@ -4,6 +4,7 @@ import csv
 class Ics:
     def __init__(self, agents):
         self.agents = agents
+        self.agents_dict = {ag: "" for ag in self.agents}
 
     @staticmethod
     def from_csv(filepath):
@@ -16,5 +17,4 @@ class Ics:
             return Ics(agents)
 
     def __getitem__(self, item):
-        if item in self.agents:
-            return {}
+        return self.agents_dict[item]
