@@ -1,10 +1,14 @@
 import csv
 
 
+class AgentEvents:
+    pass
+
+
 class Ics:
     def __init__(self, agents):
         self.agents = agents
-        self.agents_dict = {ag: "" for ag in self.agents}
+        self.agents_dict = {ag: AgentEvents() for ag in self.agents}
 
     @staticmethod
     def from_csv(filepath):
