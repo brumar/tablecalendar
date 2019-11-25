@@ -30,9 +30,14 @@ class Ics:
             reader = csv.reader(f)
             first_row = next(reader)
             agents = tuple(first_row[2:])
+            ics = Ics(agents)
             for row in reader:
-                pass
-            return Ics(agents)
+                event = Event.from_rawstrings(row[0], row[1])
+                for c, cell in enumerate(row[2:]):
+                    if cell == "x":
+                        agent = ics.agents[c]
+                        ics[agent].events.append(event)
+            return ics
 
     def __getitem__(self, item):
         return self.agents_dict[item]
