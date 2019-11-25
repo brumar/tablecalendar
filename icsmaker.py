@@ -22,7 +22,7 @@ class AgentEvents:
         return self.events[item]
 
 
-class Ics:
+class EventCsvParser:
     def __init__(self, agents):
         self.agents = agents
         self.agents_dict = {ag: AgentEvents() for ag in self.agents}
@@ -33,7 +33,7 @@ class Ics:
             reader = csv.reader(f)
             first_row = next(reader)
             agents = tuple(first_row[2:])
-            ics = Ics(agents)
+            ics = EventCsvParser(agents)
             ics.add_events_from_csvreader(reader)
             return ics
 
@@ -41,8 +41,11 @@ class Ics:
         for row in reader:
             event = Event.from_rawstrings(row[0], row[1])
             agents = self.get_agents_from_row(row[2:])
-            for agent in agents:
-                self[agent].events.append(event)
+            self.add_event_to_agents(agents, event)
+
+    def add_event_to_agents(self, agents, event):
+        for agent in agents:
+            self[agent].events.append(event)
 
     def get_agents_from_row(self, x_list):
         for agent, cell in zip(self.agents, x_list):

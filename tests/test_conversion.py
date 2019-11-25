@@ -1,11 +1,11 @@
-from icsmaker import Ics, AgentEvents, Event
+from icsmaker import EventCsvParser, AgentEvents, Event
 from datetime import date
 from pytest import fixture
 
 
 @fixture(name="cal_ics")
 def cal_ics():
-    yield Ics.from_csv("./tests/fixture_1.csv")
+    yield EventCsvParser.from_csv("./tests/fixture_1.csv")
 
 
 def test_ft_parsing(cal_ics):
