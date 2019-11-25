@@ -45,11 +45,9 @@ class Ics:
                 self[agent].events.append(event)
 
     def get_agents_from_row(self, x_list):
-        agents = []
-        for c, cell in enumerate(x_list):
+        for agent, cell in zip(self.agents, x_list):
             if cell == "x":
-                agents.append(self.agents[c])
-        return agents
+                yield agent
 
     def __getitem__(self, item):
         return self.agents_dict[item]
