@@ -2,7 +2,8 @@ import csv
 
 
 class AgentEvents:
-    pass
+    def __init__(self):
+        self.events = []
 
 
 class Ics:
