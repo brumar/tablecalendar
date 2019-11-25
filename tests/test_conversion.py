@@ -17,8 +17,12 @@ def test_ft_parsing(cal_ics):
 
 def test_ut_get_list_agents(cal_ics):
 
-    assert cal_ics.agents == ("MARIE", "JOE", "CLEMENT")
+    assert cal_ics.agents == ("MARIE", "JOE", "CLEMENT", "TOM")
 
 
 def test_ut_get_agent(cal_ics):
     assert isinstance(cal_ics["MARIE"], AgentEvents)
+
+
+def test_ut_agent_with_no_event(cal_ics):
+    assert cal_ics["TOM"].events == []
