@@ -1,4 +1,4 @@
-from icsmaker import Ics, AgentEvents
+from icsmaker import Ics, AgentEvents, Event
 from datetime import date
 from pytest import fixture
 
@@ -26,3 +26,9 @@ def test_ut_get_agent(cal_ics):
 
 def test_ut_agent_with_no_event(cal_ics):
     assert cal_ics["TOM"].events == []
+
+
+def test_ut_create_event():
+    event = Event.from_rawstrings(day="22/11/2019", shift="8h-9h30")
+    assert event.day == date(2019, 11, 22)
+    assert event.txt_shift == "8h-9h30"
