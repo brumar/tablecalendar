@@ -2,8 +2,8 @@ import csv
 
 
 class AgentEvents:
-    def __init__(self):
-        self.events = []
+    def __init__(self, events=None):
+        self.events = events if events is not None else []
 
 
 class Ics:
