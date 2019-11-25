@@ -29,3 +29,10 @@ To deactivate your virtual env
 ```
 deactivate
 ```
+
+Pyannotate is used.
+To add type automatically :
+```
+pyannotate --type-info ./annotations.json --py3 tests/test_conversion.py -w
+pyannotate --type-info ./annotations.json --py3 icsmaker.py -w
+```
