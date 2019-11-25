@@ -1,4 +1,17 @@
 import csv
+from datetime import datetime, date
+
+
+class Event:
+    def __init__(self, day, shift):
+        self.day = day
+        self.txt_shift = shift
+
+    @staticmethod
+    def from_rawstrings(day, shift):
+        d = datetime.strptime(day, "%d/%m/%Y")
+        d = date(d.year, d.month, d.day)
+        return Event(day=d, shift=shift)
 
 
 class AgentEvents:
