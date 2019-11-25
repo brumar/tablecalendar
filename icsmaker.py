@@ -18,6 +18,9 @@ class AgentEvents:
     def __init__(self, events=None):
         self.events = events if events is not None else []
 
+    def __getitem__(self, item):
+        return self.events[item]
+
 
 class Ics:
     def __init__(self, agents):
