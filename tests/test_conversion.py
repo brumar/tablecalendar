@@ -40,4 +40,4 @@ def test_ut_gen_ics() -> None:
     eics = EventsIcs(cal_ics)
     eics.create_calendar()
 
-    assert len(eics.get_calendar() == 1)
+    assert len(eics.get_calendar().events == 5)
