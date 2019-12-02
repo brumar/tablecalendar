@@ -41,3 +41,17 @@ def test_ut_gen_ics(cal_ics: EventCsvParser) -> None:
     eics.create_calendar()
 
     assert len(eics.get_calendar().events) == 5
+
+
+def test_ut_gen_ics_orgs(cal_ics: EventCsvParser) -> None:
+    eics = EventsIcs(cal_ics)
+    eics.create_calendar()
+
+    s = set()
+
+    for e in eics.get_calendar().events:
+        s.add(e.organizer)
+
+    assert "MARIE" in s
+    assert "JOE" in s
+    assert "CLEMENT" in s
