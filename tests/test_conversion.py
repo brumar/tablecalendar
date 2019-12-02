@@ -1,4 +1,4 @@
-from icsmaker import EventCsvParser, AgentEvents, Event
+from icsmaker import EventCsvParser, AgentEvents, Event, EventsIcs
 from datetime import date
 from pytest import fixture
 from typing import Iterator
@@ -34,3 +34,10 @@ def test_ut_create_event() -> None:
     event = Event.from_rawstrings(day="22/11/2019", shift="8h-9h30")
     assert event.day == date(2019, 11, 22)
     assert event.txt_shift == "8h-9h30"
+
+
+def test_ut_gen_ics() -> None:
+    eics = EventsIcs(cal_ics)
+    eics.create_calendar()
+
+    assert len(eics.get_calendar() == 1)
