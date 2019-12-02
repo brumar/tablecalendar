@@ -7,7 +7,8 @@ from typing import Tuple
 from _csv import reader
 from typing import Iterator
 from typing import List
-import ics
+from ics import Calendar
+from ics import Event as ICSEvent
 
 
 class Event:
@@ -63,3 +64,37 @@ class EventCsvParser:
 
     def __getitem__(self, item: str) -> AgentEvents:
         return self.agents_dict[item]
+
+
+class EventsIcs:
+    def __init__(self, ecp: EventCsvParser) -> None:
+        self.ecp = ecp
+        self.calendar = None
+
+    def create_calendar(self) -> Calendar:
+        # If calendar has already been generated, return
+        if self.calendar is not None:
+            return
+
+        # Create calendar instance
+        c = Calendar()
+
+        # Iterate through all events
+        for agent in self.ecp.agents_dict:
+            for event in self.ecp[agent]:
+                # Generate event
+                e = ICSEvent()
+                e.begin = event.day
+                e.name = event.name = agent + " - " + event.txt_shift
+                e.organizer = agent
+
+                # Add event to calendar
+                c.events.add(e)
+
+        return c
+
+    def get_calendar(self) -> Calendar:
+        if self.calendar is None:
+            return self.create_calendar()
+
+        return self.calendar
