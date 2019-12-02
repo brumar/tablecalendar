@@ -36,8 +36,8 @@ def test_ut_create_event() -> None:
     assert event.txt_shift == "8h-9h30"
 
 
-def test_ut_gen_ics() -> None:
+def test_ut_gen_ics(cal_ics: EventCsvParser) -> None:
     eics = EventsIcs(cal_ics)
     eics.create_calendar()
 
-    assert len(eics.get_calendar().events == 5)
+    assert len(eics.get_calendar().events) == 5
