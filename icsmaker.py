@@ -74,7 +74,7 @@ class EventsIcs:
     def create_calendar(self) -> Calendar:
         # If calendar has already been generated, return
         if self.calendar is not None:
-            return
+            return self.calendar
 
         # Create calendar instance
         c = Calendar()
@@ -92,6 +92,14 @@ class EventsIcs:
                 c.events.add(e)
 
         return c
+
+    def write_to_file(self, path: str) -> bool:
+        # Generate calendar
+        c = self.create_calendar()
+
+        # Write to file
+        with open(path, "w") as output:
+            output.writelines(c)
 
     def get_calendar(self) -> Calendar:
         if self.calendar is None:
