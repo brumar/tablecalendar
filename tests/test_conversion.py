@@ -3,6 +3,7 @@ from datetime import date
 from pytest import fixture
 from typing import Iterator
 from typing import Union
+import os.path
 
 
 @fixture(name="cal_ics")
@@ -68,3 +69,11 @@ def test_ut_gen_ics(cal_ics: EventCsvParser) -> None:
             l.append(e)
 
     assert len(l) == 2
+
+
+def test_ft_write_file(cal_ics: EventCsvParser) -> None:
+    eics = EventsIcs(cal_ics)
+
+    eics.write_to_file("file.ics")
+
+    assert os.path.exists("file.ics")
