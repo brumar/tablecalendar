@@ -7,6 +7,7 @@ from typing import Tuple
 from _csv import reader
 from typing import Iterator
 from typing import List
+import ics
 
 
 class Event:
@@ -41,9 +42,9 @@ class EventCsvParser:
             reader = csv.reader(f)
             first_row = next(reader)
             agents = tuple(first_row[2:])
-            ics = EventCsvParser(agents)
-            ics.add_events_from_csvreader(reader)
-            return ics
+            ics_e = EventCsvParser(agents)
+            ics_e.add_events_from_csvreader(reader)
+            return ics_e
 
     def add_events_from_csvreader(self, reader: reader) -> None:
         for row in reader:
